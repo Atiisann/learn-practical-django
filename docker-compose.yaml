@@ -3,10 +3,8 @@ version: '3'
 services:
   db:
     image: postgres
-    environment:
-      - POSTGRES_DB=postgres
-      - POSTGRES_USER=postgres
-      - POSTGRES_PASSWORD=postgres
+    env_file:
+      - ./.env
     volumes:
       - ./djangosnippets/db/:/var/lib/postgresql/data
 
