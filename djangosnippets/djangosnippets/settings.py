@@ -33,6 +33,7 @@ ALLOWED_HOSTS = []
 
 INSTALLED_APPS = [
     'django_bootstrap5',
+    'pygments_renderer',
 
     'snippets.apps.SnippetsConfig',
 

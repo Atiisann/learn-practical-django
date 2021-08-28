@@ -2,3 +2,4 @@ django==3.2
 psycopg2==2.8.6
 beautifulsoup4==4.9.3
 django-bootstrap5==2.1.2
+django-pygments-renderer==0.0.1
