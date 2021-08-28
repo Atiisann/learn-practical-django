@@ -7,7 +7,6 @@ from snippets.forms import SnippetFrom
 from snippets.models import Snippet
 
 
-
 @require_safe
 def top(request):
     snippets = Snippet.objects.all()
