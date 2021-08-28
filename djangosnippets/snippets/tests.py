@@ -70,9 +70,28 @@ class SnippetDetailTest(TestCase):
 
 
 class CreateSnippetTest(TestCase):
-    def test_should_resolve_snippet_new(self):
-        found = resolve('/snippets/new/')
-        self.assertEqual(snippet_new, found.func)
+    def setUp(self):
+        self.user = User.objects.create(
+            username='test_user',
+            email='test@example.com',
+            password='top_secret_pass0001',
+        )
+        self.client.force_login(self.user)
+    
+    def test_render_creation_form(self):
+        response = self.client.get('/snippets/new/')
+        self.assertContains(response, 'スニペットの登録', status_code=200)
+
+    def test_create_snippet(self):
+        data = {
+            'title': 'タイトル',
+            'code': 'コード',
+            'descriptin': '解説',
+        }
+        self.client.post('/snippets/new', data)
+        snippet = Snippet.objects.get(title='タイトル')
+        self.assertEqual('コード', snippet.code)
+        self.assertEqual('解説', snippet.description)
 
 
 class SnippetDetailTest(TestCase):
