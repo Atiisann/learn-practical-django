@@ -22,7 +22,7 @@ def snippet_new(request):
             snippet = form.save(commit=False)
             snippet.created_by = request.user
             snippet.save()
-            return redirect('snippets:snippet_detail', snippet_id=snippet.pk)
+            return redirect('/', snippet_id=snippet.pk)
     else:
         form = SnippetFrom()
     return render(request, 'snippets/snippet_new.html', {'form': form})
@@ -37,7 +37,7 @@ def snippet_edit(request, snippet_id):
         form = SnippetFrom(request.POST, instance=snippet)
         if form.is_valid():
             form.save()
-            return redirect('snippets:snippet_detail', snippet_id=snippet.pk)
+            return redirect('/', snippet_id=snippet.pk)
     else:
         form = SnippetFrom(instance=snippet)
     return render(request, 'snippets/snippet_edit.html', {'form': form})
